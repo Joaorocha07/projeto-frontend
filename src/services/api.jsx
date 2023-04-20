@@ -8,6 +8,11 @@ export const createSession = async(email, senha) => {
     return api.post('/sessions', { email, senha });
 }
 
+export const createUser = async(email, senha, senhaConfirm, dataNascimento, nome) => {
+    return api.post('/usuarios', { email, senha, senhaConfirm, dataNascimento, nome });
+  }
+  
+
 export const getUsuarios = async(userId, query) => {
     let url = `/users/${userId}/usuarios/`
 

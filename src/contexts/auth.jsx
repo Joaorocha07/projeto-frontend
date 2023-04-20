@@ -2,7 +2,7 @@ import React, { useState, createContext, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { api, createSession } from "../services/api";
+import { api, createSession, createUser } from "../services/api";
 
 export const AuthContext = createContext();
 
@@ -47,8 +47,6 @@ export const AuthProvider = ({ children }) => {
         }
       }
       
-
-
     // Função para o usuario sair do sistema
     const logout = () => {
         localStorage.removeItem('user');
@@ -61,6 +59,29 @@ export const AuthProvider = ({ children }) => {
         navigate('/login');
     }
 
+    // Função para cadastrar um novo usuário
+    const cadastrar = async (email, senha, senhaConfirm, dataNascimento, nome) => {
+      try {
+        const resposta = await createUser(email, senha, senhaConfirm, dataNascimento, nome);
+    
+        localStorage.setItem('user', JSON.stringify(resposta.data.user));
+        localStorage.setItem('token', resposta.data.token);
+    
+        api.defaults.headers.Authorization = `Bearer ${resposta.data.token}`;
+    
+        setUser(resposta.data.user);
+    
+        navigate('/');
+      } catch (erro) {
+        if (erro.response && erro.response.status === 422) {
+          return alert('E-mail já cadastrado');
+        } else {
+          console.error(erro);
+          return 'Erro no servidor';
+        }
+      }
+    }
+    
     return (
         <AuthContext.Provider 
             value={{
@@ -69,6 +90,7 @@ export const AuthProvider = ({ children }) => {
                 loading,
                 login,
                 logout,
+                cadastrar
             }}
         >
             {children}

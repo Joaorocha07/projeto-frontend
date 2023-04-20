@@ -10,7 +10,7 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-.container-login {
+.container-cadastro {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,19 +18,21 @@ body {
     background-color: #ecf0f1;
 }
 
-.area-login {
+.area-cadastro {
+    display: flex;
+    flex-direction: row-reverse; /* altera a direção do fluxo de elementos */
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
     background-color: #F4F3F8;
     border-radius: 15px;
     width: 60%;
     height: 90vh;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
     box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.10);
-    border: 10px solid #F4F3F8; 
-}
-
-.area-login::before {
+    border: 10px solid #F4F3F8;
+  }
+  
+  .area-cadastro::before {
     background-image: url("../../asset/tela-login.avif");
     background-position: 80%;
     background-size: 98vw;
@@ -41,16 +43,12 @@ body {
     background-color: #58af9b;
     width: 50%;
     height: 100%;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    left: 0;
+    border-top-right-radius: 15px; /* altera o raio da borda superior direita */
+    border-bottom-right-radius: 15px; /* altera o raio da borda inferior direita */
+    right: 0; /* move para o lado direito */
     border-radius: 15px;
-}
-
-.box {
-    position: absolute;
-    display: flex;
-}
+  }
+  
 
 .first-column {
     justify-content: center;
@@ -61,15 +59,15 @@ body {
 }
 
 .title {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
     text-transform: capitalize;
     /* color: #fff; */
 }
 
 .text {
-    font-size: 14px;
-    font-weight: 300;
+    font-size: 16px;
+    font-weight: 550;
     line-height: 30px;
     /* color: #fff; */
 }
@@ -78,7 +76,7 @@ body {
     border-radius: 15px;
     text-transform: uppercase;
     color: #fff;
-    font-size: 10px;
+    font-size: 14px;
     padding: 10px 50px;
     cursor: pointer;
     font-weight: bold;

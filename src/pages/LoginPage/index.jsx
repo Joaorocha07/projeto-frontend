@@ -7,9 +7,12 @@ import { AuthContext } from "../../contexts/auth";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
+import { useNavigate } from "react-router-dom";
+
 const LoginPage = () => {
 
     const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [erro, setErro] = useState("");
@@ -35,6 +38,11 @@ const LoginPage = () => {
         login(email, senha);
     }
 
+    const handleCadastrar = (event) => {
+        event.preventDefault();
+        navigate("/cadastro");
+    }
+
     return (
         <div className="container-login">
             <div className="area-login box">
@@ -42,13 +50,12 @@ const LoginPage = () => {
                     <h2 className="title title-first">Seja bem vindo!</h2>
                     <p className="text text-first">Você não tem o cadastro</p>
                     <p className="text text-first">Crie sua conta agora!</p>
-                    <button className="btn btn-cadastrar">Cadastrar</button>
+                    <button className="btn btn-cadastrar" onClick={handleCadastrar}>Cadastrar</button>
                 </div>
 
                 <div className="second-column">
                     <h2 className="title title-second">Entre em sua conta</h2>
-                    {/* <p>Authenticated: { JSON.stringify(authenticated) }</p>
-                    <p>Email: { JSON.stringify(user) }</p> */}
+
                     <p className="text text-second">Insira seus dados a-baixo para logar em sua conta!</p>
 
                     <form className="form">

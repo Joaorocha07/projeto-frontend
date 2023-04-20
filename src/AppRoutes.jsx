@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
+import CadastroPage from "./pages/CadastroPage";
 
 const AppRoutes = () => {
 
@@ -29,6 +30,7 @@ const AppRoutes = () => {
             <AuthProvider>
                 <Routes>
                     <Route exact path="/login" element={<LoginPage />} />
+                    <Route exact path="/cadastro" element={<CadastroPage />} />
                     <Route exact path="/" element={<Private><MainPage /></Private>} />
                 </Routes>
             </AuthProvider>
